@@ -1,0 +1,14 @@
+
+{ 
+    "_comment": "RAPPEL MÉMOIRE : Le manifest.json est le fichier de configuration obligatoire de l'extension. Il indique notamment à Chrome quelle version du système d'extensions on utilise, le nom de notre extension, sa version et quel fichier constitue le popup. Il dit à Chrome : « Lorsque l'utilisateur clique sur l'icône de mon extension, ouvre popup.html. la permission activeTab permet à l'extension d'interagir avec l'onglet actif après une action de l'utilisateur »",
+    "manifest_version": 3,
+    "name": "SnapLearn Assistant",
+    "version": "1.0.0",
+    "description": "Capture une zone d'écran et utilise l'OCR et un LLM.",
+       "permissions": [
+        "activeTab"
+    ],
+    "action": {
+        "default_popup": "popup/popup.html"
+    }
+}
