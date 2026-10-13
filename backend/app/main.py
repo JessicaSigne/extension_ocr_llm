@@ -79,6 +79,7 @@ class LLMRequest(BaseModel):
     text: str
     task: str = "explain"
     question: str | None = None
+    context: str = ""
 
 @app.post("/llm")
 def process_text(request: LLMRequest):
@@ -109,9 +110,13 @@ def process_text(request: LLMRequest):
         )
 
     prompt = f"""
+Contexte fourni par l'utilisateur :
+{request.context.strip() or "Aucun contexte particulier fourni."}
+
+Consigne :
 {tasks[request.task]}
 
-Texte :
+Texte à analyser :
 {request.text}
 """
 
@@ -217,3 +222,9 @@ Texte :
 
 # POST /ocr : extrait le texte d’une image avec EasyOCR.
 # POST /llm : explique, résume ou répond à une question à partir d’un texte avec Qwen 2.5.
+
+# Le rôle des fichiers sera le suivant :
+
+# content.js : afficher le cadre de sélection et récupérer la zone choisie.
+
+# background.js : transmettre les messages entre la page et l'extension.

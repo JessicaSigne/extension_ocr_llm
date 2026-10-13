@@ -1,19 +1,109 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> Snap Learn </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap Learn</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
-
 <body>
+    <main class="app">
+        <header class="app-header">
+            <div class="brand-icon">S</div>
+            <div>
+                <h1>Snap Learn</h1>
+                <p>Comprendre ce que tu captures.</p>
+            </div>
+            <span class="status-dot" title="Assistant local"></span>
+        </header>
 
-    <h2> Assistant pédagogique </h2>
+        <section class="capture-card">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">ÉTAPE 01</span>
+                    <h2>Capture ton écran</h2>
+                </div>
+                <span class="step-number">01</span>
+            </div>
+            <p class="description">
+                Sélectionne une zone de texte pour l'analyser avec l'IA.
+            </p>
+            <button id="captureButton" class="button button-primary">
+                <span aria-hidden="true">⌖</span>
+                Capturer une zone
+            </button>
+            <p class="hint">Choisis une zone suffisamment lisible.</p>
+        </section>
 
-    <button id="captureButton">
-        Capturer une zone
-    </button>
-    <div id="result" style="overflow: auto;"></div> 
+        <section class="settings-card">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">ÉTAPE 02</span>
+                    <h2>Personnalise l'analyse</h2>
+                </div>
+                <span class="step-number">02</span>
+            </div>
+
+            <label for="task">Que veux-tu faire ?</label>
+            <select id="task">
+                <option value="explain">Comprendre et expliquer</option>
+                <option value="summarize">Résumer l'essentiel</option>
+                <option value="answer">Répondre à une question</option>
+            </select>
+
+            <div id="questionGroup" class="field-group hidden">
+                <label for="question">Ta question</label>
+                <textarea id="question" rows="2"
+                    placeholder="Que veux-tu savoir sur ce texte ?"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="context">Contexte pour l'IA</label>
+                <textarea id="context" rows="3"
+                    placeholder="Ex. : Je révise le machine learning et je débute."></textarea>
+                <p class="hint">Le contexte aide l'IA à adapter son explication.</p>
+            </div>
+        </section>
+
+        <section id="resultCard" class="result-card hidden">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">ÉTAPE 03</span>
+                    <h2>Ton résultat</h2>
+                </div>
+                <span class="step-number">03</span>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <span class="spinner"></span>
+                <span id="loadingText">Analyse en cours...</span>
+            </div>
+
+            <p id="errorMessage" class="error-message hidden"></p>
+
+            <div id="selectionPreview" class="preview-container hidden"></div>
+
+            <div id="ocrSection" class="output-section hidden">
+                <h3>Texte extrait</h3>
+                <pre id="ocrText"></pre>
+            </div>
+
+            <div id="llmSection" class="output-section hidden">
+                <h3 id="answerTitle">Réponse de l'IA</h3>
+                <div id="llmText" class="answer-text"></div>
+                <button id="copyButton" class="button button-secondary">
+                    Copier la réponse
+                </button>
+            </div>
+        </section>
+
+        <footer>
+            <span class="footer-dot"></span>
+            Traitement local · EasyOCR + Qwen
+        </footer>
+    </main>
+
     <script src="popup.js"></script>
-
 </body>
 </html>

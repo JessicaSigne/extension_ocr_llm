@@ -1,5 +1,5 @@
 fastapi
-uvicorn
+uvicorn[standard]
 easyocr # permet d'extraire le texte des images
 python-multipart # permet à FastAPI de recevoir une image envoyée sous forme de fichier via une requête HTTP.
 ollama # est un exécutant de modèles de langage local qui permet d'exécuter des modèles LLM (Large Language Models) sur votre machine locale. Il est utilisé pour interagir avec le modèle LLM et générer des réponses basées sur le texte extrait par EasyOCR. 
