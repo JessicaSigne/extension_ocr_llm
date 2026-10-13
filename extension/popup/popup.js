@@ -175,5 +175,47 @@ function enableSelection(canvas, context, screenshot) {
         preview.style.maxWidth = "100%";
 
         result.appendChild(preview);
+
+
+        sendImageToOCR(selectedImage)
+            .then((ocrResult) => {
+                console.log("Texte extrait :", ocrResult.text);
+            })
+            .catch((error) => {
+                console.error("Erreur OCR :", error);
+            });
     });
 }
+
+
+async function sendImageToOCR(selectedImage) {
+    // Convertir la Data URL en fichier binaire
+    const response = await fetch(selectedImage);
+    const blob = await response.blob();
+
+    // Préparer le formulaire envoyé à FastAPI
+    const formData = new FormData();
+    formData.append("file", blob, "capture.png");
+
+    // Envoyer l'image au backend
+    const apiResponse = await fetch(
+        "http://127.0.0.1:8000/ocr",
+        {
+            method: "POST",
+            body: formData,
+        }
+    );
+
+    if (!apiResponse.ok) {
+        throw new Error(
+            `Erreur API : ${apiResponse.status}`
+        );
+    }
+
+    const result = await apiResponse.json();
+
+    console.log("Texte extrait :", result.text);
+
+    return result;
+}
+
