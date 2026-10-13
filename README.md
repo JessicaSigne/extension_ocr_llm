@@ -116,11 +116,9 @@ Avant de lancer le projet, installer :
 ### 1. Cloner le dépôt
 
 ```bash
-git clone <URL_DU_DEPOT>
+git clone https://github.com/JessicaSigne/extension_ocr_llm.git
 cd ocr-llm-assistant
 ```
-
-Remplacer `<URL_DU_DEPOT>` par l'URL réelle du dépôt Git.
 
 ### 2. Créer un environnement virtuel Python
 
@@ -278,6 +276,6 @@ Le fonctionnement local ne garantit pas, à lui seul, la confidentialité de tou
 
 **Jessica SIGNE**
 
-Projet personnel de mise en pratique en développement d'extensions Chrome, traitement de données, OCR et intégration de modèles de langage locaux.
+Projet scolaire (reprit) de mise en pratique en développement d'extensions Chrome, traitement de données, OCR et intégration de modèles de langage locaux.
 
 ---
